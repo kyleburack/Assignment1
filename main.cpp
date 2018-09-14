@@ -6,12 +6,13 @@ CPSC350-1
 Assignment 1 - C++ Review
 **/
 
-#include <iostream>;
+#include <iostream>
 #include "dnaStream.h"
+#include "dnaStream.cpp"
 
 using namespace std;
 
-int main(int argc, char argv[]){
+int main(int argc, char *argv[]){
 
   dnaStream dna;
 
@@ -19,18 +20,18 @@ int main(int argc, char argv[]){
 
   while(continues == true){
 
-    cout << "Enter name of file. \n"
+    cout << "Enter name of file. \n";
     string file;
     string reading = "yes";
-    cin >> file;
+    getline(cin, file);
     dna.fileIn(file);
     dna.fileOut("kyleburack.txt");
 
     cout << "Would you like to process another file? (Enter NO to exit, Enter anything else to continue.) \n";
-    cin >> reading;
-    if(tolower(reading) == "no"){
+    getline(cin, reading);
+    if(reading == "no" || reading == "No" || reading == "NO"){
       continues = false;
-      cout << "Thank you for analyzing your DNA file. \n"
+      cout << "Thank you for analyzing your DNA file. \n";
     }
     else{
       continue;
@@ -39,4 +40,5 @@ int main(int argc, char argv[]){
   }
 
   return 0;
+
 }

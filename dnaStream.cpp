@@ -15,11 +15,7 @@ Assignment 1 - C++ Review
 
 using namespace std;
 
-class dnastream(){
-
-//setting the constant value of Pi to canlculate the line Length
-
-  const double pi = 3.1415926535987;
+dnaStream::dnaStream(){
 
 //setting all variables to default values
 
@@ -53,25 +49,27 @@ class dnastream(){
 
   lines = 0;
 
-  void dnaStream::countInd(String line){
+}
+
+  void dnaStream::countInd(string line){
     for(int i = 0; i < line.length(); i++){
-      if(tolower(line[i] == a)){
+      if(toupper(line[i] == 'A')){
         ++indA;
       }
-      else if(tolower(line[i]) == c){
+      else if(toupper(line[i]) == 'C'){
         ++indC;
       }
-      else if(tolower(line[i]) == t){
+      else if(toupper(line[i]) == 'T'){
         ++indT;
       }
-      else if(tolower(line[i]) == g){
+      else if(toupper(line[i]) == 'G'){
         ++indG;
       }
     }
     countPair(line);
   }
 
-  void dnaStream::countPair(String line){
+  void dnaStream::countPair(string line){
     int j;
     for(int i = 0; i < line.length(); i++){
       if(i == line.length()){
@@ -84,59 +82,59 @@ class dnastream(){
 
         //Checks the first char to see which letter it is, then the one directly after to make a pair.
 
-        if(tolower(line[i] == a)){
-            if(tolower(line[j]) == a){
+        if(toupper(line[i] == 'A')){
+            if(toupper(line[j]) == 'A'){
               ++pairAA;
             }
-            else if(tolower(line[j]) == c){
+            else if(toupper(line[j]) == 'C'){
               ++pairAC;
             }
-            else if(tolower(line[j]) == t){
+            else if(toupper(line[j]) == 'T'){
               ++pairAT;
             }
-            else if(tolower(line[j]) == g){
+            else if(toupper(line[j]) == 'G'){
               ++pairAG;
             }
         }
-        else if(tolower(line[i]) == c){
-            if(tolower(line[j]) == a){
+        else if(toupper(line[i]) == 'C'){
+            if(toupper(line[j]) == 'A'){
               ++pairCA;
             }
-            else if(tolower(line[j]) == c){
+            else if(toupper(line[j]) == 'C'){
               ++pairCC;
             }
-            else if(tolower(line[j]) == t){
+            else if(toupper(line[j]) == 'T'){
               ++pairCT;
             }
-            else if(tolower(line[j]) == g){
+            else if(toupper(line[j]) == 'G'){
               ++pairCG;
             }
         }
-        else if(tolower(line[i]) == t){
-            if(tolower(line[j]) == a){
+        else if(toupper(line[i]) == 'T'){
+            if(toupper(line[j]) == 'A'){
               ++pairTA;
             }
-            else if(tolower(line[j]) == c){
+            else if(toupper(line[j]) == 'C'){
               ++pairTC;
             }
-            else if(tolower(line[j]) == t){
+            else if(toupper(line[j]) == 'T'){
               ++pairTT;
             }
-            else if(tolower(line[j]) == g){
+            else if(toupper(line[j]) == 'G'){
               ++pairTG;
             }
         }
-        else if(tolower(line[i]) == g){
-            if(tolower(line[j]) == a){
+        else if(toupper(line[i]) == 'G'){
+            if(toupper(line[j]) == 'A'){
               ++pairGA;
             }
-            else if(tolower(line[j]) == c){
+            else if(toupper(line[j]) == 'C'){
               ++pairGC;
             }
-            else if(tolower(line[j]) == t){
+            else if(toupper(line[j]) == 'T'){
               ++pairGT;
             }
-            else if(tolower(line[j]) == g){
+            else if(toupper(line[j]) == 'G'){
               ++pairGG;
             }
         }
@@ -145,7 +143,7 @@ class dnastream(){
   }
 
   double dnaStream::calcSumInd(){
-    sumInd = indA + indC + indT + indG
+    sumInd = indA + indC + indT + indG;
     cout << "Sum: " << sumInd << "\n";
     return sumInd;
   }
@@ -174,13 +172,13 @@ class dnastream(){
     return stddev;
   }
 
-  void dnaStream::fileIn(String fileName){
-      String local;
+  void dnaStream::fileIn(string fileName){
+      string local;
       ifstream myfile (fileName.c_str());
       if(myfile.is_open()){
         while(getline(myfile, local)){
           ++lines;
-          countInd();
+          countInd(local);
         }
         cout << "Number of Lines: " << lines << "\n";
         calcSumInd();
@@ -194,7 +192,7 @@ class dnastream(){
       }
   }
 
-  void dnaStream::fileOut(String fileName){
+  void dnaStream::fileOut(string fileName){
     ifstream myfile (fileName.c_str());
 
     if(myfile.is_open()){
@@ -209,7 +207,7 @@ class dnastream(){
 
 //Information about myselft, and the describtion of the dna text file
 
-      cout << "Kyle Burack \n 2288845 \n burack@chapman.edu \n CPSC350-1 \n Assignment 1- C++ review" << "\n"
+      cout << "Kyle Burack \n 2288845 \n burack@chapman.edu \n CPSC350-1 \n Assignment 1- C++ review" << "\n";
       cout << "Sum: " << sumInd << "\n";
       cout << "Mean: " << mean << "\n";
       cout << "Variance: " << var << "\n";
@@ -252,25 +250,25 @@ class dnastream(){
 
               if(j < gauA){
 
-                cout << "A"
+                cout << "A";
 
               }
 
               else if(j < gauA + gauC){
 
-                cout << "C"
+                cout << "C";
 
               }
 
               else if(j < gauA + gauC + gauT){
 
-                cout << "T"
+                cout << "T";
 
               }
 
               else if(j < gauA + gauC + gauT + gauG){
 
-                cout << "G"
+                cout << "G";
 
               }
 
@@ -282,15 +280,13 @@ class dnastream(){
 
       else{
 
-        cout << "File not available to be used."
+        cout << "File not available to be used.";
 
       }
 }
 
   int dnaStream::getLength(){
-    double c = sqrt((-2)* log( rand() / (RAND_MAX + 1))) * cos(2 * pi * (rand() / (RAND_MAX + 1)));
+    double c = sqrt((-2)* log( rand() / RAND_MAX)) * cos(2 * 3.1415926535987 * (rand() / RAND_MAX));
     double d = stddev * c + mean;
     return d;
   }
-
-}

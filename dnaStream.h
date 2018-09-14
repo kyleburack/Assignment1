@@ -10,7 +10,7 @@ Assignment 1 - C++ Review
 
 using namespace std;
 
-class dnaEntry(){
+class dnaStream{
 
 public:
 
@@ -35,8 +35,8 @@ public:
 
   //Functions to count how many times each pair or individuals
 
-    void countInd(String line);
-    void countPair(String line);
+    void countInd(string line);
+    void countPair(string line);
 
   //Functions for calculations of the mean, variance, standard deviation, and the sums of both individual dna and dna pairs
     double calcMean();
@@ -47,11 +47,11 @@ public:
 
   //Setting up the functions that will input the file with the DNA strings and output the returns
 
-    void fileIn(String fileName);
-    void fileOut(String fileName);
+    void fileIn(string fileName);
+    void fileOut(string fileName);
 
   //Function for obtaining the length of each line of the file input.
 
     int getLength();
 
-}
+};
