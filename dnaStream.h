@@ -7,12 +7,13 @@ Assignment 1 - C++ Review
 **/
 
 #include <iostream>
+#pragma once
 
 using namespace std;
 
 class dnaStream{
 
-public:
+private:
 
   //instantiating all individual dna letters, and all possible pairs in each position
 
@@ -31,7 +32,9 @@ public:
 
     int lines;
 
+public:
 
+    dnaStream();
 
   //Functions to count how many times each pair or individuals
 
@@ -53,5 +56,4 @@ public:
   //Function for obtaining the length of each line of the file input.
 
     int getLength();
-
 };
