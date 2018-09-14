@@ -238,9 +238,11 @@ dnaStream::dnaStream(){
       myfile << "Probability of GT: " << pairGT / sumPair << endl;
       myfile << "Probability of GG: " << pairGG / sumPair << endl;
 
-      cout << gausian;
+      cout << gausian << endl;
 
       for(int i = 0; i < 1000; ++i){
+
+        gausian = getLength();
 
         for(int j = 0; j < gausian; ++j){
 
