@@ -25,7 +25,7 @@ int main(int argc, char *argv[]){
     string reading = "yes";
     getline(cin, file);
     dna.fileIn(file);
-    dna.fileOut("kyleburack.txt");
+    dna.fileOut("kyleburack.out");
 
     cout << "Would you like to process another file? (Enter NO to exit, Enter anything else to continue.) \n";
     getline(cin, reading);

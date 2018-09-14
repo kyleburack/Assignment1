@@ -142,6 +142,8 @@ dnaStream::dnaStream(){
     }
   }
 
+//calculates the amount of dna letters in the file.
+
   double dnaStream::calcSumInd(){
     sumInd = indA + indC + indT + indG;
     cout << "Sum: " << sumInd << "\n";
@@ -193,7 +195,7 @@ dnaStream::dnaStream(){
   }
 
   void dnaStream::fileOut(string fileName){
-    ifstream myfile (fileName.c_str());
+    ofstream myfile (fileName.c_str());
 
     if(myfile.is_open()){
 
@@ -205,70 +207,64 @@ dnaStream::dnaStream(){
       probT = indT / sumInd;
       probG = indG / sumInd;
 
+      int gausian = getLength();
+      int rando = rand();
 //Information about myselft, and the describtion of the dna text file
 
-      cout << "Kyle Burack \n 2288845 \n burack@chapman.edu \n CPSC350-1 \n Assignment 1- C++ review" << "\n";
-      cout << "Sum: " << sumInd << "\n";
-      cout << "Mean: " << mean << "\n";
-      cout << "Variance: " << var << "\n";
-      cout << "Standard Deviation: " << stddev << "\n";
+      myfile << "Kyle Burack \n 2288845 \n burack@chapman.edu \n CPSC350-1 \n Assignment 1- C++ review" << endl;
+      myfile << "Sum: " << sumInd << endl;
+      myfile << "Mean: " << mean << endl;
+      myfile << "Variance: " << var << endl;
+      myfile << "Standard Deviation: " << stddev << endl;
 
-      cout << "Probability of A: " << probA << "\n";
-      cout << "Probability of C: " << probC / sumInd << "\n";
-      cout << "Probability of T: " << probT / sumInd << "\n";
-      cout << "Probability of G: " << probG / sumInd << "\n";
-      cout << "Probability of AA: " << pairAA / sumPair << "\n";
-      cout << "Probability of AC: " << pairAC / sumPair << "\n";
-      cout << "Probability of AT: " << pairAT / sumPair << "\n";
-      cout << "Probability of AG: " << pairAG / sumPair << "\n";
-      cout << "Probability of CA: " << pairCA / sumPair << "\n";
-      cout << "Probability of CC: " << pairCC / sumPair << "\n";
-      cout << "Probability of CT: " << pairCT / sumPair << "\n";
-      cout << "Probability of CG: " << pairCG / sumPair << "\n";
-      cout << "Probability of TA: " << pairTA / sumPair << "\n";
-      cout << "Probability of TC: " << pairTC / sumPair << "\n";
-      cout << "Probability of TT: " << pairTT / sumPair << "\n";
-      cout << "Probability of TG: " << pairTG / sumPair << "\n";
-      cout << "Probability of GA: " << pairGA / sumPair << "\n";
-      cout << "Probability of GC: " << pairGC / sumPair << "\n";
-      cout << "Probability of GT: " << pairGT / sumPair << "\n";
-      cout << "Probability of GG: " << pairGG / sumPair << "\n";
+      myfile << "Probability of A: " << probA << endl;
+      myfile << "Probability of C: " << probC << endl;
+      myfile << "Probability of T: " << probT << endl;
+      myfile << "Probability of G: " << probG << endl;
+      myfile << "Probability of AA: " << pairAA / sumPair << endl;
+      myfile << "Probability of AC: " << pairAC / sumPair << endl;
+      myfile << "Probability of AT: " << pairAT / sumPair << endl;
+      myfile << "Probability of AG: " << pairAG / sumPair << endl;
+      myfile << "Probability of CA: " << pairCA / sumPair << endl;
+      myfile << "Probability of CC: " << pairCC / sumPair << endl;
+      myfile << "Probability of CT: " << pairCT / sumPair << endl;
+      myfile << "Probability of CG: " << pairCG / sumPair << endl;
+      myfile << "Probability of TA: " << pairTA / sumPair << endl;
+      myfile << "Probability of TC: " << pairTC / sumPair << endl;
+      myfile << "Probability of TT: " << pairTT / sumPair << endl;
+      myfile << "Probability of TG: " << pairTG / sumPair << endl;
+      myfile << "Probability of GA: " << pairGA / sumPair << endl;
+      myfile << "Probability of GC: " << pairGC / sumPair << endl;
+      myfile << "Probability of GT: " << pairGT / sumPair << endl;
+      myfile << "Probability of GG: " << pairGG / sumPair << endl;
+
+      cout << gausian;
 
       for(int i = 0; i < 1000; ++i){
 
-        int gaussian = getLength();
+        for(int j = 0; j < gausian; ++j){
 
-        for(int j = 0; j < gaussian; ++j){
+              if(j < probA * gausian){
 
-//For each gaussian distribution length of line, these variables give us the average number of each dna letter to print out to the file.
-
-            int gauA, gauC, gauT, gauG;
-            gauA = probA * gaussian;
-            gauC = probC * gaussian;
-            gauT = probT * gaussian;
-            gauG = probG * gaussian;
-
-              if(j < gauA){
-
-                cout << "A";
+                myfile << "A";
 
               }
 
-              else if(j < gauA + gauC){
+              else if(j < (probA * gausian) + (probC * gausian)) {
 
-                cout << "C";
-
-              }
-
-              else if(j < gauA + gauC + gauT){
-
-                cout << "T";
+                myfile << "C";
 
               }
 
-              else if(j < gauA + gauC + gauT + gauG){
+              else if(j < (probA * gausian) + (probC * gausian) + (probT * gausian)) {
 
-                cout << "G";
+                myfile << "T";
+
+              }
+
+              else if(j < (probA * gausian) + (probC * gausian) + (probT * gausian) + (probG * gausian)) {
+
+                myfile << "G";
 
               }
 
@@ -286,7 +282,7 @@ dnaStream::dnaStream(){
 }
 
   int dnaStream::getLength(){
-    double c = sqrt((-2)* log( rand() / RAND_MAX)) * cos(2 * 3.1415926535987 * (rand() / RAND_MAX));
+    double c = sqrt((-2)* log( (double)rand() / RAND_MAX)) * cos(2 * 3.1415926535987 * ((double)rand() / RAND_MAX));
     double d = stddev * c + mean;
     return d;
   }
